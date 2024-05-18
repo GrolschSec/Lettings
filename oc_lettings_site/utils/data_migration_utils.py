@@ -35,10 +35,14 @@ def copy_model_data(
         for field in old_obj._meta.fields:
 
             if isinstance(field, ForeignKey):
-                RelatedModel = apps.get_model(field.related_model._meta.app_label, field.related_model.__name__)
-                related_obj = RelatedModel.objects.get(pk=getattr(old_obj, field.name).pk)
+                RelatedModel = apps.get_model(
+                    field.related_model._meta.app_label, field.related_model.__name__
+                )
+                related_obj = RelatedModel.objects.get(
+                    pk=getattr(old_obj, field.name).pk
+                )
                 setattr(new_obj, field.name, related_obj)
-    
+
             elif hasattr(new_obj, field.name):
                 setattr(new_obj, field.name, getattr(old_obj, field.name))
 

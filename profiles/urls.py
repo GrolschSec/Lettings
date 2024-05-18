@@ -1,7 +1,7 @@
 from django.urls import path
-from oc_lettings_site import views
+from .views import index, profile
 
 urlpatterns = [
-    path('', views.profiles_index, name='profiles_index'),
-    path('<str:username>/', views.profile, name='profile'),
+    path("", index, name="profiles_index"),
+    path("<str:username>/", profile, name="profile"),
 ]
