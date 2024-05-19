@@ -3,7 +3,6 @@ from django.core.validators import MaxValueValidator, MinLengthValidator
 
 
 class Address(models.Model):
-
     class Meta:
         verbose_name_plural = "Addresses"
 
@@ -21,7 +20,6 @@ class Address(models.Model):
 
 
 class Letting(models.Model):
-
     class Meta:
         verbose_name_plural = "Lettings"
 

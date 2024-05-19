@@ -28,7 +28,6 @@ def copy_data(apps: Apps, schema_editor: Any):
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("profiles", "0001_initial"),
     ]

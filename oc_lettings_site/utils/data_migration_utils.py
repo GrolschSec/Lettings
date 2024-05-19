@@ -33,7 +33,6 @@ def copy_model_data(
         new_obj = NewModel()
 
         for field in old_obj._meta.fields:
-
             if isinstance(field, ForeignKey):
                 RelatedModel = apps.get_model(
                     field.related_model._meta.app_label, field.related_model.__name__
