@@ -1,8 +1,8 @@
 """
 This module defines the views for the 'profiles' application.
 
-Each function in this module is a separate view that Django can render. 
-The views receive an HttpRequest object, perform operations based on the request, 
+Each function in this module is a separate view that Django can render.
+The views receive an HttpRequest object, perform operations based on the request,
 and return an HttpResponse object.
 """
 

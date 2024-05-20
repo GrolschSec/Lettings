@@ -1,7 +1,7 @@
 """
 This module defines the data models for the 'profiles' application.
 
-Each class in this module represents a Django model, which is a single database table. 
+Each class in this module represents a Django model, which is a single database table.
 Each attribute of the class represents a field of the table.
 
 """
@@ -14,7 +14,8 @@ class Profile(models.Model):
     """
     This class represents the 'Profile' model for the 'profiles' application.
 
-    Each instance of this class represents a single user profile, with a one-to-one relationship with a 'User' and a field for the user's favorite city.
+    Each instance of this class represents a single user profile, with a one-to-one
+    relationship with a 'User' and a field for the user's favorite city.
 
     """
 
@@ -22,7 +23,8 @@ class Profile(models.Model):
         """
         This inner class defines metadata for the 'Profile' model.
 
-        It changes the verbose name plural to "Profiles" to correctly represent multiple instances of the 'Profile' model.
+        It changes the verbose name plural to "Profiles" to correctly represent
+        multiple instances of the 'Profile' model.
         """
 
         verbose_name_plural = "Profiles"

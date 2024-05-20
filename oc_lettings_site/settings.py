@@ -1,9 +1,11 @@
 """
 This module contains the settings for the Django project.
 
-It defines the configuration parameters for the project, such as SECRET_KEY, DEBUG, ALLOWED_HOSTS, INSTALLED_APPS, MIDDLEWARE, etc.
+It defines the configuration parameters for the project, such as SECRET_KEY, DEBUG, ALLOWED_HOSTS,
+ INSTALLED_APPS, MIDDLEWARE, etc.
 
-These settings are used by Django to configure various aspects of the project, such as security, installed apps, middleware, templates, and more.
+These settings are used by Django to configure various aspects of the project, such as security,
+installed apps, middleware, templates, and more.
 """
 
 import os

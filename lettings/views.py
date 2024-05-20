@@ -1,8 +1,8 @@
 """
 This module defines the views for the 'lettings' application.
 
-Each function in this module is a separate view that Django can render. 
-The views receive an HttpRequest object, perform operations based on the request, 
+Each function in this module is a separate view that Django can render.
+The views receive an HttpRequest object, perform operations based on the request,
 and return an HttpResponse object.
 """
 
@@ -18,7 +18,8 @@ def index(request):
         request (HttpRequest): The request object.
 
     Returns:
-        HttpResponse: The response object, which includes a context containing a list of all lettings.
+        HttpResponse: The response object, which includes a context containing a list
+         of all lettings.
     """
     lettings_list = Letting.objects.all()
     context = {"lettings_list": lettings_list}
@@ -34,7 +35,8 @@ def letting(request, letting_id):
         letting_id (int): The ID of the letting to display.
 
     Returns:
-        HttpResponse: The response object, which includes a context containing the letting's title and address.
+        HttpResponse: The response object, which includes a context containing the
+         letting's title and address.
 
     Raises:
         Http404: If no Letting exists with the given ID.

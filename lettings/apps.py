@@ -14,7 +14,8 @@ class LettingsConfig(AppConfig):
     """
     This class contains the configuration for the 'lettings' application.
 
-    It inherits from Django's AppConfig class and overrides the 'name' attribute with the name of the application.
+    It inherits from Django's AppConfig class and overrides the 'name' attribute with
+      the name of the application.
 
     Django uses this configuration when initializing the 'lettings' application.
     """

@@ -14,7 +14,8 @@ class ProfilesConfig(AppConfig):
     """
     This class contains the configuration for the 'profiles' application.
 
-    It inherits from Django's AppConfig class and overrides the 'name' attribute with the name of the application.
+    It inherits from Django's AppConfig class and overrides the 'name' attribute
+    with the name of the application.
 
     Django uses this configuration when initializing the 'profiles' application.
     """

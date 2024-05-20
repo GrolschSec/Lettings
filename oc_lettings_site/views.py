@@ -1,8 +1,8 @@
 """
 This module defines the views for the 'oc_lettings_site' application.
 
-Each function in this module is a separate view that Django can render. 
-The views receive an HttpRequest object, perform operations based on the request, 
+Each function in this module is a separate view that Django can render.
+The views receive an HttpRequest object, perform operations based on the request,
 and return an HttpResponse object.
 """
 
@@ -17,6 +17,7 @@ def index(request):
         request (HttpRequest): The request object.
 
     Returns:
-        HttpResponse: The response object, which renders the 'oc_lettings_site/index.html' template.
+        HttpResponse: The response object, which renders
+            the 'oc_lettings_site/index.html' template.
     """
     return render(request, "oc_lettings_site/index.html")

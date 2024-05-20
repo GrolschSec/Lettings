@@ -1,7 +1,7 @@
 """
 This module defines the data models for the 'lettings' application.
 
-Each class in this module represents a Django model, which is a single database table. 
+Each class in this module represents a Django model, which is a single database table.
 Each attribute of the class represents a field of the table.
 
 """
@@ -14,7 +14,8 @@ class Address(models.Model):
     """
     This class represents the 'Address' model for the 'lettings' application.
 
-    Each instance of this class represents a single address, with fields for number, street, city, state, zip code, and country ISO code.
+    Each instance of this class represents a single address, with fields for number,
+     street, city, state, zip code, and country ISO code.
 
     """
 
@@ -22,7 +23,8 @@ class Address(models.Model):
         """
         This inner class defines metadata for the 'Address' model.
 
-        It changes the verbose name plural to "Addresses" to correctly represent multiple instances of the 'Address' model.
+        It changes the verbose name plural to "Addresses" to correctly represent multiple
+         instances of the 'Address' model.
         """
 
         verbose_name_plural = "Addresses"
@@ -47,7 +49,8 @@ class Letting(models.Model):
     """
     This class represents the 'Letting' model for the 'lettings' application.
 
-    Each instance of this class represents a single letting, with fields for title and a one-to-one relationship with an 'Address'.
+    Each instance of this class represents a single letting, with fields for title
+     and a one-to-one relationship with an 'Address'.
 
     """
 
@@ -55,7 +58,8 @@ class Letting(models.Model):
         """
         This inner class defines metadata for the 'Letting' model.
 
-        It changes the verbose name plural to "Lettings" to correctly represent multiple instances of the 'Letting' model.
+        It changes the verbose name plural to "Lettings" to correctly represent multiple
+         instances of the 'Letting' model.
         """
 
         verbose_name_plural = "Lettings"
