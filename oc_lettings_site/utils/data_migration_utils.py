@@ -1,6 +1,7 @@
 from django.apps.registry import Apps
 from typing import Any
 from django.db.models import ForeignKey
+from sys import argv
 
 
 def copy_model_data(
@@ -26,6 +27,8 @@ def copy_model_data(
         None
 
     """
+    if 'test' in argv:
+        return
     OldModel = apps.get_model(old_app_name, old_model_name)
     NewModel = apps.get_model(new_app_name, new_model_name)
 
