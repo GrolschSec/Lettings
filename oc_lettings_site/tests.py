@@ -7,5 +7,6 @@ The tests can be run using the 'python manage.py test' command.
 These tests help ensure the correct functionality of the application by testing its individual units of code.
 """
 
+
 def test_dummy():
     assert 1
