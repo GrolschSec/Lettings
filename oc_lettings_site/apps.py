@@ -18,4 +18,5 @@ class OCLettingsSiteConfig(AppConfig):
 
     Django uses this configuration when initializing the 'oc_lettings_site' application.
     """
+
     name = "oc_lettings_site"

@@ -18,4 +18,5 @@ class LettingsConfig(AppConfig):
 
     Django uses this configuration when initializing the 'lettings' application.
     """
+
     name = "lettings"

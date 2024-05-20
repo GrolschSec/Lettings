@@ -18,4 +18,5 @@ class ProfilesConfig(AppConfig):
 
     Django uses this configuration when initializing the 'profiles' application.
     """
+
     name = "profiles"
