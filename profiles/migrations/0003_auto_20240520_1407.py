@@ -4,14 +4,13 @@ from django.db import migrations
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('profiles', '0002_auto_20240518_1513'),
+        ("profiles", "0002_auto_20240518_1513"),
     ]
 
     operations = [
         migrations.AlterModelOptions(
-            name='profile',
-            options={'verbose_name_plural': 'Profiles'},
+            name="profile",
+            options={"verbose_name_plural": "Profiles"},
         ),
     ]

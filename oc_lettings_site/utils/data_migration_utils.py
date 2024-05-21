@@ -27,7 +27,7 @@ def copy_model_data(
         None
 
     """
-    if 'test' in argv:
+    if "test" in argv:
         return
     OldModel = apps.get_model(old_app_name, old_model_name)
     NewModel = apps.get_model(new_app_name, new_model_name)

@@ -12,124 +12,128 @@ from django.test import TestCase
 from django.urls import reverse
 from .models import Address, Letting
 
+
 class AddressModelTest(TestCase):
     def setUp(self):
         self.address = Address.objects.create(
             number=123,
-            street='Test Street',
-            city='Test City',
-            state='TS',
+            street="Test Street",
+            city="Test City",
+            state="TS",
             zip_code=12345,
-            country_iso_code='TSC'
+            country_iso_code="TSC",
         )
 
     def test_address_creation(self):
         self.assertEqual(self.address.number, 123)
-        self.assertEqual(self.address.street, 'Test Street')
-        self.assertEqual(self.address.city, 'Test City')
-        self.assertEqual(self.address.state, 'TS')
+        self.assertEqual(self.address.street, "Test Street")
+        self.assertEqual(self.address.city, "Test City")
+        self.assertEqual(self.address.state, "TS")
         self.assertEqual(self.address.zip_code, 12345)
-        self.assertEqual(self.address.country_iso_code, 'TSC')
+        self.assertEqual(self.address.country_iso_code, "TSC")
 
     def test_address_str(self):
-        self.assertEqual(str(self.address), '123 Test Street')
+        self.assertEqual(str(self.address), "123 Test Street")
+
 
 class LettingModelTest(TestCase):
     def setUp(self):
         self.address = Address.objects.create(
             number=123,
-            street='Test Street',
-            city='Test City',
-            state='TS',
+            street="Test Street",
+            city="Test City",
+            state="TS",
             zip_code=12345,
-            country_iso_code='TSC'
+            country_iso_code="TSC",
         )
         self.letting = Letting.objects.create(
             address=self.address,
-            title='Test Letting',
+            title="Test Letting",
         )
 
     def test_letting_creation(self):
         self.assertEqual(self.letting.address, self.address)
-        self.assertEqual(self.letting.title, 'Test Letting')
-    
+        self.assertEqual(self.letting.title, "Test Letting")
+
     def test_letting_str(self):
-        self.assertEqual(str(self.letting), 'Test Letting')
+        self.assertEqual(str(self.letting), "Test Letting")
+
 
 class UrlsTest(TestCase):
     def setUp(self):
         self.address = Address.objects.create(
             number=123,
-            street='Test Street',
-            city='Test City',
-            state='TS',
+            street="Test Street",
+            city="Test City",
+            state="TS",
             zip_code=12345,
-            country_iso_code='TSC'
+            country_iso_code="TSC",
         )
         self.letting = Letting.objects.create(
             address=self.address,
-            title='Test Letting',
+            title="Test Letting",
         )
 
     def test_lettings_index_url(self):
-        response = self.client.get(reverse('lettings_index'))
+        response = self.client.get(reverse("lettings_index"))
         self.assertEqual(response.status_code, 200)
 
     def test_letting_url(self):
-        response = self.client.get(reverse('letting', args=[1]))
+        response = self.client.get(reverse("letting", args=[1]))
         self.assertEqual(response.status_code, 200)
 
     def test_letting_url_not_found(self):
-        response = self.client.get(reverse('letting', args=[100]))
+        response = self.client.get(reverse("letting", args=[100]))
         self.assertEqual(response.status_code, 404)
+
 
 class IndexViewTest(TestCase):
     def setUp(self):
         self.address = Address.objects.create(
             number=123,
-            street='Test Street',
-            city='Test City',
-            state='TS',
+            street="Test Street",
+            city="Test City",
+            state="TS",
             zip_code=12345,
-            country_iso_code='TSC'
+            country_iso_code="TSC",
         )
         self.letting = Letting.objects.create(
             address=self.address,
-            title='Test Letting',
+            title="Test Letting",
         )
 
     def test_index_view(self):
-        response = self.client.get(reverse('lettings_index'))
+        response = self.client.get(reverse("lettings_index"))
         self.assertQuerysetEqual(
-            response.context['lettings_list'],
-            ['<Letting: Test Letting>']
+            response.context["lettings_list"], ["<Letting: Test Letting>"]
         )
 
     def test_index_no_lettings(self):
         Letting.objects.all().delete()
-        response = self.client.get(reverse('lettings_index'))
-        self.assertQuerysetEqual(response.context['lettings_list'], [])
+        response = self.client.get(reverse("lettings_index"))
+        self.assertQuerysetEqual(response.context["lettings_list"], [])
+
 
 class LettingViewTest(TestCase):
     def setUp(self):
         self.address = Address.objects.create(
             number=123,
-            street='Test Street',
-            city='Test City',
-            state='TS',
+            street="Test Street",
+            city="Test City",
+            state="TS",
             zip_code=12345,
-            country_iso_code='TSC'
+            country_iso_code="TSC",
         )
         self.letting = Letting.objects.create(
             address=self.address,
-            title='Test Letting',
+            title="Test Letting",
         )
 
     def test_letting_view(self):
-        response = self.client.get(reverse('letting', args=[1]))
-        self.assertContains(response, 'Test Letting')
-        self.assertContains(response, '123 Test Street')
+        response = self.client.get(reverse("letting", args=[1]))
+        self.assertContains(response, "Test Letting")
+        self.assertContains(response, "123 Test Street")
 
     def test_letting_not_found(self):
-        response = self.client.get(reverse('letting', args=[100]))
+        response = self.client.get(reverse("letting", args=[100]))
         self.assertEqual(response.status_code, 404)
