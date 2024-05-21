@@ -9,9 +9,10 @@ These tests help ensure the correct functionality of the application by testing 
 """
 
 from django.test import TestCase
+from django.urls import reverse
 from .models import Address, Letting
 
-class AddressModelUnitTest(TestCase):
+class AddressModelTest(TestCase):
     def setUp(self):
         self.address = Address.objects.create(
             number=123,
@@ -33,7 +34,7 @@ class AddressModelUnitTest(TestCase):
     def test_address_str(self):
         self.assertEqual(str(self.address), '123 Test Street')
 
-class LettingModelUnitTest(TestCase):
+class LettingModelTest(TestCase):
     def setUp(self):
         self.address = Address.objects.create(
             number=123,
@@ -54,3 +55,30 @@ class LettingModelUnitTest(TestCase):
     
     def test_letting_str(self):
         self.assertEqual(str(self.letting), 'Test Letting')
+
+class UrlsTest(TestCase):
+    def setUp(self):
+        self.address = Address.objects.create(
+            number=123,
+            street='Test Street',
+            city='Test City',
+            state='TS',
+            zip_code=12345,
+            country_iso_code='TSC'
+        )
+        self.letting = Letting.objects.create(
+            address=self.address,
+            title='Test Letting',
+        )
+
+    def test_lettings_index_url(self):
+        response = self.client.get(reverse('lettings_index'))
+        self.assertEqual(response.status_code, 200)
+
+    def test_letting_url(self):
+        response = self.client.get(reverse('letting', args=[1]))
+        self.assertEqual(response.status_code, 200)
+
+    def test_letting_url_not_found(self):
+        response = self.client.get(reverse('letting', args=[100]))
+        self.assertEqual(response.status_code, 404)
