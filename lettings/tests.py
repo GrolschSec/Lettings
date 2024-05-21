@@ -82,3 +82,54 @@ class UrlsTest(TestCase):
     def test_letting_url_not_found(self):
         response = self.client.get(reverse('letting', args=[100]))
         self.assertEqual(response.status_code, 404)
+
+class IndexViewTest(TestCase):
+    def setUp(self):
+        self.address = Address.objects.create(
+            number=123,
+            street='Test Street',
+            city='Test City',
+            state='TS',
+            zip_code=12345,
+            country_iso_code='TSC'
+        )
+        self.letting = Letting.objects.create(
+            address=self.address,
+            title='Test Letting',
+        )
+
+    def test_index_view(self):
+        response = self.client.get(reverse('lettings_index'))
+        self.assertQuerysetEqual(
+            response.context['lettings_list'],
+            ['<Letting: Test Letting>']
+        )
+
+    def test_index_no_lettings(self):
+        Letting.objects.all().delete()
+        response = self.client.get(reverse('lettings_index'))
+        self.assertQuerysetEqual(response.context['lettings_list'], [])
+
+class LettingViewTest(TestCase):
+    def setUp(self):
+        self.address = Address.objects.create(
+            number=123,
+            street='Test Street',
+            city='Test City',
+            state='TS',
+            zip_code=12345,
+            country_iso_code='TSC'
+        )
+        self.letting = Letting.objects.create(
+            address=self.address,
+            title='Test Letting',
+        )
+
+    def test_letting_view(self):
+        response = self.client.get(reverse('letting', args=[1]))
+        self.assertContains(response, 'Test Letting')
+        self.assertContains(response, '123 Test Street')
+
+    def test_letting_not_found(self):
+        response = self.client.get(reverse('letting', args=[100]))
+        self.assertEqual(response.status_code, 404)
