@@ -11,6 +11,7 @@ def copy_model_data(
     old_model_name: str,
     new_app_name: str,
     new_model_name: str,
+    force_run: bool = False,
 ) -> None:
     """
     Copy data from one model to another, it can be useful when moving a model to anothher app
@@ -27,7 +28,7 @@ def copy_model_data(
         None
 
     """
-    if "test" in argv:
+    if "test" in argv and not force_run:
         return
     OldModel = apps.get_model(old_app_name, old_model_name)
     NewModel = apps.get_model(new_app_name, new_model_name)

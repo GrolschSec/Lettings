@@ -8,6 +8,22 @@ These tests help ensure the correct functionality of the application by testing 
  individual units of code.
 """
 
+from django.test import TestCase
+from django.urls import resolve, reverse
+from .views import index
 
-def test_dummy():
-    assert 1
+
+class TestUrls(TestCase):
+    def test_index_view_url_resolves_index_view(self):
+        view = resolve("/")
+        self.assertEqual(view.func, index)
+
+
+class TestIndexView(TestCase):
+    def test_index(self):
+        response = self.client.get(reverse("index"))
+        self.assertEqual(response.status_code, 200)
+
+
+class TestCopyModelData(TestCase):
+    pass
