@@ -7,6 +7,10 @@ and return an HttpResponse object.
 """
 
 from django.shortcuts import render
+from logging import getLogger
+
+
+logger = getLogger(__name__)
 
 
 def index(request):
@@ -20,4 +24,7 @@ def index(request):
         HttpResponse: The response object, which renders
             the 'oc_lettings_site/index.html' template.
     """
+    logger.info(
+        "Client with IP %s accessed the index page", request.META.get("REMOTE_ADDR")
+    )
     return render(request, "oc_lettings_site/index.html")

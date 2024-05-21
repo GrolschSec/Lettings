@@ -12,6 +12,7 @@ import os
 import sentry_sdk
 
 from pathlib import Path
+from django.utils.log import RequireDebugTrue
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -143,3 +144,64 @@ if sentry_dsn:
         traces_sample_rate=1.0,
         profiles_sample_rate=1.0,
     )
+
+
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "filters": {
+        "require_debug_true": {
+            "()": RequireDebugTrue,
+        },
+    },
+    "formatters": {
+        "verbose": {
+            "format": "{levelname} {asctime} {module} {process:d} {thread:d} {message}",
+            "style": "{",
+        },
+        "simple": {
+            "format": "{levelname} {message}",
+            "style": "{",
+        },
+    },
+    "handlers": {
+        "console": {
+            "level": "DEBUG",
+            "filters": ["require_debug_true"],
+            "class": "logging.StreamHandler",
+            "formatter": "simple",
+        },
+        "file": {
+            "level": "INFO",
+            "class": "logging.FileHandler",
+            "filename": os.path.join(os.path.dirname(__file__), "info.log"),
+            "formatter": "verbose",
+        },
+        "sentry": {
+            "level": "ERROR",
+            "class": "sentry_sdk.integrations.logging.EventHandler",
+        },
+    },
+    "loggers": {
+        "django": {
+            "handlers": ["console", "file", "sentry"],
+            "level": "DEBUG",
+            "propagate": True,
+        },
+        "oc_lettings_site": {
+            "handlers": ["console", "file", "sentry"],
+            "level": "DEBUG",
+            "propagate": False,
+        },
+        "profiles": {
+            "handlers": ["console", "file", "sentry"],
+            "level": "DEBUG",
+            "propagate": False,
+        },
+        "lettings": {
+            "handlers": ["console", "file", "sentry"],
+            "level": "DEBUG",
+            "propagate": False,
+        },
+    },
+}
