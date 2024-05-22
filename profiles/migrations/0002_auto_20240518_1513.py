@@ -3,7 +3,7 @@
 from django.db import migrations
 from typing import Any
 from django.apps.registry import Apps
-from oc_lettings_site.utils.data_migration_utils import copy_model_data
+from oc_lettings_site.data_migration_utils import copy_model_data
 
 
 def copy_data(apps: Apps, schema_editor: Any):
