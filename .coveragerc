@@ -1,0 +1,15 @@
+[run]
+branch = True
+source = 
+    oc_lettings_site
+    profiles
+    lettings
+
+[report]
+omit = 
+    */tests/*
+    */migrations/*
+    */tests.py
+    */wsgi.py
+    */asgi.py
+    */apps.py
