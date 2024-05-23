@@ -27,6 +27,4 @@ def index(request):
     logger.info(
         "Client with IP %s accessed the index page", request.META.get("REMOTE_ADDR")
     )
-    dd = 7 / 0
-    print(dd)
     return render(request, "oc_lettings_site/index.html")
