@@ -26,6 +26,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 django_secret = os.environ.get("DJANGO_SECRET")
 if not django_secret:
     django_secret = token_hex(24)
+
 SECRET_KEY = django_secret
 
 # SECURITY WARNING: don't run with debug turned on in production!
