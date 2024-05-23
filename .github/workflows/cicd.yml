@@ -43,12 +43,17 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
 
-      - name: Build and push Docker image
-        uses: docker/build-push-action@v5.3.0
-        with:
-          context: .
-          push: true
-          tags: |
-            ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.DOCKERHUB_REPO }}:${{ github.sha }}
-            ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.DOCKERHUB_REPO }}:latest
+      - name: Check env var
+        run: echo $DOCKERHUB_REPO
+        env:
+          DOCKERHUB_REPO: ${{ env.DOCKERHUB_REPO }}
+        
+    #   - name: Build and push Docker image
+    #     uses: docker/build-push-action@v5.3.0
+    #     with:
+    #       context: .
+    #       push: true
+    #       tags: |
+    #         ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.DOCKERHUB_REPO }}:${{ github.sha }}
+    #         ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.DOCKERHUB_REPO }}:latest
         
