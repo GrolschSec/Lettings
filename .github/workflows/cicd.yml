@@ -29,7 +29,7 @@ jobs:
           coverage run manage.py test
           coverage report --fail-under=80
     
-  containerize:
+  build:
     runs-on: ubuntu-latest
     needs: ci
     if: github.ref == 'refs/heads/main'
@@ -53,3 +53,18 @@ jobs:
             ${{ secrets.DOCKERHUB_USERNAME }}/${{ vars.DOCKERHUB_REPO }}:${{ github.sha }}
             ${{ secrets.DOCKERHUB_USERNAME }}/${{ vars.DOCKERHUB_REPO }}:latest
         
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    environment:
+      name: 'production'
+      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
+    steps:
+      - name: Deploy to Azure Web App
+        id: deploy-to-webapp
+        uses: azure/webapps-deploy@v2
+        with:
+          app-name: 'rl-oc-lettings'
+          slot-name: 'production'
+          publish-profile: ${{ secrets.AzureAppService_PublishProfile_502c4f3be2394012b4d2477f8dc63c1d }}
+          images: 'index.docker.io/${{ secrets.DOCKERHUB_USERNAME }}/oc_lettings_site:${{ github.sha }}'
