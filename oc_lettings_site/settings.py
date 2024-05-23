@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 django_secret = os.environ.get("DJANGO_SECRET")
-if not django_secret:
+if django_secret is None or django_secret == "":
     django_secret = token_hex(24)
 
 SECRET_KEY = django_secret
@@ -32,7 +32,7 @@ SECRET_KEY = django_secret
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ["localhost"]
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
