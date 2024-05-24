@@ -114,10 +114,9 @@ To interact with the SQLite database, you can use the `sqlite3` command-line too
 To access the administration panel, follow these steps:
 
 1. **Change the Admin Password:**
-   - Use the `manage.py changepassword` command to change the admin password:
-     ```bash
-    python manage.py changepassword admin
-     ```
+    ```bash
+        python manage.py changepassword admin
+    ```
 
 2. **Access the Admin Panel:**
    - Go to [http://localhost:8000/admin](http://localhost:8000/admin) in your web browser.
