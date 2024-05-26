@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Deployment &#8212; oc_lettings_site 1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=d1102ebc" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=12dfc556" />
+    <script src="_static/documentation_options.js?v=f2a433a1"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Usage Guide" href="usage_guide.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="deployment">
+<h1>Deployment<a class="headerlink" href="#deployment" title="Link to this heading">¶</a></h1>
+<p>For continuous deployment of the application, we use a GitHub Actions workflow that performs several steps:</p>
+<section id="compilation-testing-and-test-coverage">
+<h2>Compilation, Testing, and Test Coverage<a class="headerlink" href="#compilation-testing-and-test-coverage" title="Link to this heading">¶</a></h2>
+<p>The workflow verifies that the code compiles correctly, runs all tests, and checks the test coverage.</p>
+</section>
+<section id="containerization-and-upload-to-dockerhub">
+<h2>Containerization and Upload to DockerHub<a class="headerlink" href="#containerization-and-upload-to-dockerhub" title="Link to this heading">¶</a></h2>
+<p>The application is containerized and the Docker image is uploaded to DockerHub (only on the main branch).</p>
+</section>
+<section id="deployment-to-azure">
+<h2>Deployment to Azure<a class="headerlink" href="#deployment-to-azure" title="Link to this heading">¶</a></h2>
+<p>The application is deployed to an Azure server, but only if the containerization step is successful.</p>
+</section>
+</section>
+<section id="github-configuration">
+<h1>GitHub Configuration<a class="headerlink" href="#github-configuration" title="Link to this heading">¶</a></h1>
+<p>To ensure the workflow functions correctly, several variables and secrets are configured in the GitHub repository:</p>
+<section id="secrets-repository-settings-secrets-and-variables-actions-secrets">
+<h2>Secrets (Repository settings &gt; Secrets and variables &gt; Actions &gt; Secrets)<a class="headerlink" href="#secrets-repository-settings-secrets-and-variables-actions-secrets" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><strong>AZURE_WEBAPP_PUBLISH_PROFILE</strong>: The content of the file downloaded from Azure that allows us to authenticate.</p></li>
+<li><p><strong>DOCKERHUB_USERNAME</strong>: DockerHub username to push the Docker image.</p></li>
+<li><p><strong>DOCKERHUB_PASSWORD</strong>: Password used to connect to DockerHub to push the Docker image.</p></li>
+</ul>
+</section>
+<section id="variables-repository-settings-secrets-and-variables-actions-variables">
+<h2>Variables (Repository settings &gt; Secrets and variables &gt; Actions &gt; Variables)<a class="headerlink" href="#variables-repository-settings-secrets-and-variables-actions-variables" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><strong>DOCKERHUB_REPO</strong>: The name of the DockerHub repository to push the Docker image.</p></li>
+</ul>
+</section>
+</section>
+<section id="azure-configuration">
+<h1>Azure Configuration<a class="headerlink" href="#azure-configuration" title="Link to this heading">¶</a></h1>
+<p>After creating a new web app on Azure and configuring it for container deployment from DockerHub using GitHub Actions, we set the necessary environment variables for the application. These are optional but required for full functionality:</p>
+<ul class="simple">
+<li><p><strong>SENTRY_DSN</strong> and <strong>DJANGO_SECRET</strong>: Refer to the local development section to see how to obtain these variables.</p></li>
+</ul>
+<p>To set these environment variables in Azure:</p>
+<ol class="arabic simple">
+<li><p>Go to the Azure portal and navigate to your App Service.</p></li>
+<li><p>Go to <strong>Settings &gt; Configuration &gt; Application settings</strong>.</p></li>
+<li><p>Add the required environment variables (<strong>SENTRY_DSN</strong> and <strong>DJANGO_SECRET</strong>).</p></li>
+</ol>
+<p>Once these configurations are done, the next push to the main branch will automatically trigger the deployment process. If you need to, you can also manually trigger the CI/CD pipeline from the GitHub interface by navigating to the “Actions” tab, selecting the desired workflow, and clicking on the “Run workflow” button.</p>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">oc_lettings_site</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="description.html">Description of the project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="technologies.html">Technologies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="database.html">Database</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usage_guide.html">Usage Guide</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Deployment</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#compilation-testing-and-test-coverage">Compilation, Testing, and Test Coverage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#containerization-and-upload-to-dockerhub">Containerization and Upload to DockerHub</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#deployment-to-azure">Deployment to Azure</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="#github-configuration">GitHub Configuration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#secrets-repository-settings-secrets-and-variables-actions-secrets">Secrets (Repository settings &gt; Secrets and variables &gt; Actions &gt; Secrets)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#variables-repository-settings-secrets-and-variables-actions-variables">Variables (Repository settings &gt; Secrets and variables &gt; Actions &gt; Variables)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="#azure-configuration">Azure Configuration</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="usage_guide.html" title="previous chapter">Usage Guide</a></li>
+  </ul></li>
+</ul>
+</div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2024, GrolschSec.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 7.3.7</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 0.7.16</a>
+      
+      |
+      <a href="_sources/deployment.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

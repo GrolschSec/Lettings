@@ -1,0 +1,106 @@
+Technologies
+============
+
+Technologies used
+-----------------
+
+- Django Framework
+- Python 3.10
+- SQLite
+- HTML
+- CSS
+- JavaScript
+
+
+Packages used
+-------------
+
+.. list-table:: 
+   :header-rows: 1
+
+   * - Package
+     - Version
+   * - alabaster
+     - 0.7.16
+   * - asgiref
+     - 3.8.1
+   * - Babel
+     - 2.15.0
+   * - certifi
+     - 2024.2.2
+   * - charset-normalizer
+     - 3.3.2
+   * - coverage
+     - 7.5.1
+   * - Django
+     - 3.0
+   * - docutils
+     - 0.21.2
+   * - entrypoints
+     - 0.3
+   * - exceptiongroup
+     - 1.2.1
+   * - flake8
+     - 3.7.0
+   * - gunicorn
+     - 22.0.0
+   * - idna
+     - 3.7
+   * - imagesize
+     - 1.4.1
+   * - iniconfig
+     - 2.0.0
+   * - Jinja2
+     - 3.1.4
+   * - MarkupSafe
+     - 2.1.5
+   * - mccabe
+     - 0.6.1
+   * - packaging
+     - 24.0
+   * - pluggy
+     - 1.5.0
+   * - pycodestyle
+     - 2.5.0
+   * - pyflakes
+     - 2.1.1
+   * - Pygments
+     - 2.18.0
+   * - pytest
+     - 8.2.0
+   * - pytest-django
+     - 3.9.0
+   * - pytz
+     - 2024.1
+   * - requests
+     - 2.32.2
+   * - sentry-sdk
+     - 2.2.1
+   * - six
+     - 1.16.0
+   * - snowballstemmer
+     - 2.2.0
+   * - Sphinx
+     - 7.3.7
+   * - sphinxcontrib-applehelp
+     - 1.0.8
+   * - sphinxcontrib-devhelp
+     - 1.0.6
+   * - sphinxcontrib-htmlhelp
+     - 2.0.5
+   * - sphinxcontrib-jsmath
+     - 1.0.1
+   * - sphinxcontrib-qthelp
+     - 1.0.7
+   * - sphinxcontrib-serializinghtml
+     - 1.1.10
+   * - sqlparse
+     - 0.5.0
+   * - tomli
+     - 2.0.1
+   * - typing_extensions
+     - 4.11.0
+   * - urllib3
+     - 2.2.1
+   * - whitenoise
+     - 6.6.0
