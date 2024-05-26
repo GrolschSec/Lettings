@@ -24,6 +24,8 @@ def index(request):
         HttpResponse: The response object, which renders
             the 'oc_lettings_site/index.html' template.
     """
+    dd = 4 / 0
+    print(dd)
     logger.info(
         "Client with IP %s accessed the index page", request.META.get("REMOTE_ADDR")
     )
