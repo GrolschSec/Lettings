@@ -19,7 +19,7 @@ Deployment to Azure
 The application is deployed to an Azure server, but only if the containerization step is successful.
 
 GitHub Configuration
-====================
+--------------------
 
 To ensure the workflow functions correctly, several variables and secrets are configured in the GitHub repository:
 
@@ -36,7 +36,7 @@ Variables (Repository settings > Secrets and variables > Actions > Variables)
 - **DOCKERHUB_REPO**: The name of the DockerHub repository to push the Docker image.
 
 Azure Configuration
-===================
+-------------------
 
 After creating a new web app on Azure and configuring it for container deployment from DockerHub using GitHub Actions, we set the necessary environment variables for the application. These are optional but required for full functionality:
 
