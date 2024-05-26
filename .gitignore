@@ -5,3 +5,4 @@ env/
 oc_lettings_site/info.log
 *.env
 .coverage
+staticfiles/
